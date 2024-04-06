@@ -1,36 +1,29 @@
-import React, { useEffect } from 'react';
-import AOS from 'aos';
+import React, { useEffect } from "react";
+import AOS from "aos";
 import "aos/dist/aos.css";
-import './index.css';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from 'react-router-dom';
-// All pages
-import Home from './pages/Home';
-import Contact from './pages/Contact';
-import DemoProduct from './pages/DemoProduct';
+import "./index.css";
+import Clients from "./components/Clients";
+import ContactUs from "./components/ContactUs";
+import Portfolio from "./components/Features";
+import Services from "./components/Services";
+import Pricing from "./components/Pricing";
+import Whymyob from "./components/whymyob";
+import Hero from "./components/Hero";
+import { WhatsAppWidget } from "react-whatsapp-widget";
+import "react-whatsapp-widget/dist/index.css";
+import { useDocTitle } from "./components/CustomHook";
 
-import {useDocTitle} from './components/CustomHook';
-import ScrollToTop from './components/ScrollToTop';
-
-//import { ReactComponent as CompanyIcon } from './assets/crown.svg';
-
-import { WhatsAppWidget } from 'react-whatsapp-widget';
-import 'react-whatsapp-widget/dist/index.css';
-
-function App() {
+const App = () => {
   useEffect(() => {
     const aos_init = () => {
       AOS.init({
         once: true,
         duration: 1000,
-        easing: 'ease-out-cubic',
+        easing: "ease-out-cubic",
       });
-    }
+    };
 
-    window.addEventListener('load', () => {
+    window.addEventListener("load", () => {
       aos_init();
     });
   }, []);
@@ -39,20 +32,18 @@ function App() {
 
   return (
     <>
-      <Router>
-        <ScrollToTop>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/get-demo" element={<DemoProduct />} /> 
-          </Routes>
-        </ScrollToTop>
-      </Router>
+      <Hero />
+      <Whymyob />
+      <Services />
+      <Portfolio />
+      <Pricing />
+      <Clients />
+      <ContactUs />
 
-      <WhatsAppWidget phoneNumber="XXXXXXXXXX" companyName="Support Agent" replyTimeText="MYOB AccountEdge Pro Hosting Solution" />
+      <WhatsAppWidget phoneNumber="447445028046" />
+      {/* <WhatsAppWidget CompanyIcon={CompanyIcon} phoneNumber="447445028046" /> */}
     </>
   );
-}
-
+};
 
 export default App;
